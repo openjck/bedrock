@@ -9,6 +9,16 @@
     var $document = $(document);
     var $body = $('body');
     
+    $("#mwc-countdown").mozcountdown({
+        dayText : trans('daytext'),
+        daysText : trans('daystext'),
+        hoursText : trans('hourstext'),
+        minutesText : trans('minutestext'),
+        secondsText : trans('secondstext'),
+        displayZeroDays : true,
+        oneDayClass : 'one-day'
+    });
+    
     // Load content in a full-page modal
     $("a.modal").click(function(e) {
         e.preventDefault();

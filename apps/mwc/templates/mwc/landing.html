@@ -10,22 +10,18 @@
 
 {% block js %}
   {{ js('mwc') }}
-  <script>
-  {# L10N: These are abbreviations of 'days', 'hours', 'minutes', and 'seconds', used as labels on a countdown clock. Translated labels should be as short as possible. #}
-  $("#mwc-countdown").mozcountdown({
-     dayText : '{{ _('day') }} ',
-     daysText : '{{ _('days') }} ',
-     hoursText : '{{ _('hrs') }} ',
-     minutesText : '{{ _('min') }} ',
-     secondsText : '{{ _('sec') }}',
-     displayZeroDays : true,
-     oneDayClass : 'one-day'
-  });
-  </script>
 {% endblock %}
 
 {% block string_data %}
+  {# L10N: This is the label for a button that closes a modal dialog #}
   data-close="{{ _('Close') }}"
+  
+  {# L10N: These are abbreviations of 'days', 'hours', 'minutes', and 'seconds', used as labels on a countdown clock. Translated labels should be as short as possible. #}
+  data-daytext="{{ _('day') }}"
+  data-daystext="{{ _('days') }}"
+  data-hourstext="{{ _('hrs') }}"
+  data-minutestext="{{ _('min') }}"
+  data-secondstext="{{ _('sec') }}"
 {% endblock %}
 
 {% block content %}
@@ -136,8 +132,8 @@
           <h3>{{ _('Listen') }}</h3>
           <p>
           {% trans %}
-            During his Tuesday keynote, Mozilla CEO Gary Kovacs will talk about
-            reaching the next two billion smartphone users.
+            During his Tuesday keynote, Mozilla CEO Gary Kovacs will talk about 
+            reaching the next billion people to come online.
           {% endtrans %}
           <br><a href="#schedule" class="go modal">See our schedule of events</a></p>
         </div>
@@ -210,7 +206,9 @@
       <figcaption>
         <h1>{{ _('Firefox at MWC 2013 — Stand F20, Hall 8.1, App Planet') }}</h1>
       </figcaption>
-      <img src="{{ MEDIA_URL }}img/mwc/mwc-map.png" alt="{{ _('A map of Fira Gran Via, the Mobile World Congress venue, showing the location of Hall 8.1') }}">
+      <a href="{{ MEDIA_URL }}img/mwc/mwc-map.png">
+        <img src="{{ MEDIA_URL }}img/mwc/mwc-map.png" alt="{{ _('A map of Fira Gran Via, the Mobile World Congress venue, showing the location of Hall 8.1') }}">
+      </a>
     </figure>
 
     <p class="download">
