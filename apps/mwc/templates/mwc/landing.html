@@ -24,6 +24,10 @@
   </script>
 {% endblock %}
 
+{% block string_data %}
+  data-close="{{ _('Close') }}"
+{% endblock %}
+
 {% block content %}
 
   <article id="main-content" role="main">
@@ -93,7 +97,7 @@
         </a>
 
         <div class="countdown">
-          <span data-time="1361786400" id="mwc-countdown"></span>
+          <span data-time="1361723400" id="mwc-countdown"></span>
         </div>
 
       </aside>
@@ -140,7 +144,7 @@
         <div class="col learn">
           <h3>{{ _('Learn') }}</h3>
           <p>
-          {% trans link_bizdev='#' %}
+          {% trans link_bizdev=url('mozorg.partnerships') %}
             Contact our <a href="{{ link_bizdev }}">business development team</a> to get on board.
           {% endtrans %}
           </p>
@@ -161,27 +165,28 @@
           <img src="{{ MEDIA_URL }}img/mwc/logo-firefoxos.png" alt="">
           <h3>{{ _('Firefox OS') }}</h3>
           <p>
-          {% trans link_morefxos=url('firefoxos.firefoxos') %}
+          {% trans %}
             We’re working with major global partners to enable the Open Web as a
             platform for mobile devices, free from the rules and restrictions of
             existing proprietary platforms. This allows carriers and OEMs to customize
             phones to meet the specific needs of their target markets and to own and
             manage the relationship with their customers themselves.
-            <a href="{{ link_morefxos }}" class="go">Learn more</a>
           {% endtrans %}
+            <br><a href="{{ url('firefoxos.firefoxos') }}" class="go">Learn more</a>
           </p>
         </div>
         <div class="col marketplace">
           <img src="{{ MEDIA_URL }}img/mwc/logo-marketplace.png" alt="">
           <h3>{{ _('Firefox Marketplace') }}</h3>
           <p>
-          {% trans link_moremktplace=url('marketplace.marketplace') %}
+          {% trans %}
             The Marketplace offers an open app environment that leverages the scale
             of the Web as a development platform, allowing carriers, OEMs and developers
             greater flexibility. It's now possible to own billing and payment relationships,
             reach new markets and customize purchasing and app experiences to meet carrier
-            or OEM needs. <a href="{{ link_moremktplace }}" class="go">Learn more</a>
+            or OEM needs.
           {% endtrans %}
+            <br><a href="{{ url('marketplace.marketplace') }}" class="go">Learn more</a>
           </p>
         </div>
         <div class="col android">
@@ -209,7 +214,7 @@
     </figure>
 
     <p class="download">
-      <a href="#">{{ _('Download PDF') }}</a>
+      <a href="http://static.mozilla.com/moco/en-US/pdf/Firefox_at_MWC_2013_map.pdf">{{ _('Download PDF') }}</a>
     </p>
 
     <div class="directions">
@@ -289,15 +294,25 @@
 
       <div class="col alt">
         <h2><time datetime="2013-02-27">{{ _('Wednesday, February 27') }}</time></h2>
+        
+        <p class="tba">{{ _('Check back for schedule additions and updates.') }}</p>
       </div>
 
-      <div class="col">
+      <div class="col vevent">
         <h2><time datetime="2013-02-28">{{ _('Thursday, February 28') }}</time></h2>
+        
+        <h3 class="summary">{{ _('WIP Jam') }}</h3>
+        
+        <dl class="details">
+          <dt>{{ _('Time:') }}</dt>
+          <dd><time class="dtstart" datetime="2013-02-26T09:00">09:00</time>–<time class="dtend" datetime="2013-02-26T16:00">16:00</time></dd>
+          <dt>{{ _('Location:') }}</dt>
+          <dd>{{ _('Hall 8.0, Theatre B, Theatre District, App Planet, FIRA Gran Via, Barcelona') }}</dd>
+        </dl>
+
       </div>
     </div>
   </article>
-  
-<div id="strings" data-close="{{ _('Close') }}"></div>
 
 {% endblock %}
 

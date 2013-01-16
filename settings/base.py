@@ -435,8 +435,8 @@ MINIFY_BUNDLES = {
             'js/annual2011.js',
         ),
         'mwc': (
-            'js/libs/mozcountdown.js',
             'js/mwc.js',
+            'js/libs/mozcountdown.js',
         ),
     }
 }

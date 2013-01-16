@@ -2,17 +2,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-(function($) {
+(function($, trans) {
     'use strict';
     
     var $window = $(window);
     var $document = $(document);
-    
-    // Create text translation function using #strings element.
-    var $strings = $('#strings');
-    window.trans = function trans(stringId) {
-        return $strings.data(stringId);
-    };
+    var $body = $('body');
     
     // Load content in a full-page modal
     $("a.modal").click(function(e) {
@@ -62,7 +57,6 @@
             closeModal();
         }
     });
-
     
     // Load external links in new tab/window
     $('a[rel="external"]').click( function(e) {
@@ -70,4 +64,4 @@
         window.open(this.href);
     });
     
-})(jQuery);
+})(jQuery, trans);
