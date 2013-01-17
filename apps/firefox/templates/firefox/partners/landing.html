@@ -2,14 +2,13 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "mwc/mwc-base.html" %}
+{% extends "firefox/partners/partners-base.html" %}
 
 {% block page_title %}{{ _('Firefox at Mobile World Congress 2013') }}{% endblock %}
-{% block body_id %}mwc{% endblock %}
-{% block body_class %}sand{% endblock %}
+{% block body_id %}partners{% endblock %}
 
 {% block js %}
-  {{ js('mwc') }}
+  {{ js('partners') }}
 {% endblock %}
 
 {% block string_data %}
@@ -89,7 +88,7 @@
 
       <aside class="mwc-banner">
         <a href="http://www.mobileworldcongress.com" rel="external">
-          <img src="{{ MEDIA_URL }}img/mwc/mwc-banner-220.png" alt="{{ _('Mobile World Congress, Barcelona, 25–28 February 2013') }}">
+          <img src="{{ MEDIA_URL }}img/firefox/partners/mwc-banner-220.png" alt="{{ _('Mobile World Congress, Barcelona, 25–28 February 2013') }}">
         </a>
 
         <div class="countdown">
@@ -158,7 +157,7 @@
       <h2>{{ _('The proof is in the platform') }}</h2>
       <div class="cols-3">
         <div class="col firefoxos">
-          <img src="{{ MEDIA_URL }}img/mwc/logo-firefoxos.png" alt="">
+          <img src="{{ MEDIA_URL }}img/firefox/partners/logo-firefoxos.png" alt="">
           <h3>{{ _('Firefox OS') }}</h3>
           <p>
           {% trans %}
@@ -172,7 +171,7 @@
           </p>
         </div>
         <div class="col marketplace">
-          <img src="{{ MEDIA_URL }}img/mwc/logo-marketplace.png" alt="">
+          <img src="{{ MEDIA_URL }}img/firefox/partners/logo-marketplace.png" alt="">
           <h3>{{ _('Firefox Marketplace') }}</h3>
           <p>
           {% trans %}
@@ -186,7 +185,7 @@
           </p>
         </div>
         <div class="col android">
-          <img src="{{ MEDIA_URL }}img/mwc/logo-android.png" alt="">
+          <img src="{{ MEDIA_URL }}img/firefox/partners/logo-android.png" alt="">
           <h3>{{ _('Firefox for Android') }}</h3>
           <p>
           {% trans %}
@@ -206,8 +205,8 @@
       <figcaption>
         <h1>{{ _('Firefox at MWC 2013 — Stand F20, Hall 8.1, App Planet') }}</h1>
       </figcaption>
-      <a href="{{ MEDIA_URL }}img/mwc/mwc-map.png">
-        <img src="{{ MEDIA_URL }}img/mwc/mwc-map.png" alt="{{ _('A map of Fira Gran Via, the Mobile World Congress venue, showing the location of Hall 8.1') }}">
+      <a href="{{ MEDIA_URL }}img/firefox/partners/mwc-map.png">
+        <img src="{{ MEDIA_URL }}img/firefox/partners/mwc-map.png" alt="{{ _('A map of Fira Gran Via, the Mobile World Congress venue, showing the location of Hall 8.1') }}">
       </a>
     </figure>
 

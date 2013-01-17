@@ -276,8 +276,8 @@ MINIFY_BUNDLES = {
         'annual_2011': (
             'css/foundation/annual2011.less',
         ),
-        'mwc': (
-            'css/mwc.less',
+        'partners': (
+            'css/partners.less',
         ),
     },
     'js': {
@@ -434,9 +434,9 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.jcarousel.min.js',
             'js/annual2011.js',
         ),
-        'mwc': (
+        'partners': (
             'js/libs/mozcountdown.js',
-            'js/mwc.js',
+            'js/partners.js',
         ),
     }
 }
@@ -521,7 +521,6 @@ INSTALLED_APPS = (
     'research',
     'styleguide',
     'tabzilla',
-    'mwc',
 
     # libs
     'l10n_utils',
