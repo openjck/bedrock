@@ -97,8 +97,8 @@ might end up looking like this::
     </VirtualHost>
 
 But you might have better success using a real WSGI setup that is closer to
-what the real servers use.  The following configuration is adapted only
-slightly from what the bedrock staging server uses.
+what the real servers use.  The following configuration is simplified
+from what the bedrock staging server uses.
 
 Assumptions:
 
@@ -124,46 +124,11 @@ Apache config - create file ``/etc/apache2/sites-available/mozilla.com``::
         AddType application/x-httpd-php .php .html
         DirectoryIndex index.php index.html
         RewriteEngine On
-        RewriteMap toupper int:toupper
-        SetEnvIf SSLSessionID .+ HTTPS=on
 
         <Directory "/path/to/mozilla.com">
             Options MultiViews FollowSymLinks -Indexes
             AllowOverride All
-            ExpiresActive on
-            ExpiresDefault "access plus 15 minutes"
-            Options +MultiViews -Indexes
         </Directory>
-
-        <LocationMatch ^/en-US(/projects)?/firefox(/(index.html)?)?$>
-            ExpiresActive off
-            Header always set "Cache-Control" "no-store, no-cache, must-revalidate, post-check=0, pre-check=0, private, max-age=0"
-            Header always set "Pragma" "no-cache"
-        </LocationMatch>
-
-        <LocationMatch /en-US/firefox/ie.html>
-            ExpiresActive off
-            Header always set "Cache-Control" "no-store, no-cache, must-revalidate, post-check=0, pre-check=0, private, max-age=0"
-            Header always set "Pragma" "no-cache"
-        </LocationMatch>
-
-        SetEnvIf X-Forwarded-For "^.*[\.:].*[\.:].*[\.:].*$" is-forwarded
-        LogFormat "%h %v %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" \"%{Cookie}i\"" urchin
-        ErrorLog "|/usr/sbin/rotatelogs /var/log/httpd/www.mozilla.org/error_log_%Y-%m-%d-%H 3600 -0"
-        CustomLog "|/usr/sbin/rotatelogs /var/log/httpd/www.mozilla.org/access_%Y-%m-%d-%H 3600 -0" urchin env=!is-forwarded
-        CustomLog "|/usr/sbin/rotatelogs /var/log/httpd/www.mozilla.org/access_%Y-%m-%d-%H 3600 -0" x-forwarded-for env=is-forwarded
-
-        AddDefaultCharset UTF-8
-        AddType image/svg+xml .svg
-        AddType application/vnd.mozilla.xul+xml .xul
-        AddType text/xml .rdf
-        AddType image/x-icon .ico
-        AddType text/calendar .ics
-        # StarOffice documents
-        AddType application/vnd.stardivision.impress .sdd
-        AddType application/vnd.stardivision.writer .sdw
-        AddType application/vnd.stardivision.draw .sda
-        AddType application/vnd.stardivision.calc .sdc
 
         RewriteMap org-urls-410 txt:/path/to/mozilla.com/org-urls-410.txt
         RewriteMap org-urls-301 txt:/path/to/mozilla.com/org-urls-301.txt
