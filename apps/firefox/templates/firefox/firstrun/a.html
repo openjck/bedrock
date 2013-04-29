@@ -1,0 +1,191 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title %}{{ _('Welcome to Firefox') }}{% endblock %}
+{% block body_id %}firefox-firstrun{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_firstrun_new_a') }}
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  <header id="page-header">
+    <img src="{{ media('img/firefox/firstrun/firefox-logo.png') }}" alt="Firefox" />
+    <h1 class="large">{{_('Welcome to Firefox!')}}</h1>
+    <h2>{{ _('Better browsing starts now.') }}</h2>
+  </header>
+
+  <nav class="sticky-nav" id="sticky-nav">
+    <ul>
+      <li><a href="">{{ _('Smart features') }}</a></li>
+      <li><a href="">{{ _('Made for you') }}</a></li>
+      <li class="last"><a href="">{{ _('Fast &amp; easy') }}</a></li>
+    </ul>
+  </nav>
+
+  <article class="feature img-right">
+    <div class="copy">
+      <header>
+        <h1>{{ _('Save your faves') }}</h1>
+      </header>
+
+      <p>
+      {% trans %}
+        Keep your favorite sites a click away with Pinned Tabs, small tabs that open
+        automatically when you start your browser and notify you when something changes.
+      {% endtrans %}
+      </p>
+
+      <a href="">{{ _('See how they work') }}</a>
+    </div>
+
+    <div class="screenshot">
+      {{ platform_img('img/firefox/firstrun/pinnedtabs.png', alt=_('Pinned tabs')) }}
+    </div>
+  </article>
+
+{% if version in '36' %}
+  <article class="feature">
+    <div class="copy">
+      <header>
+        <h1>{{ _('Discover our mission') }}</h1>
+      </header>
+
+      <p>
+      {% trans %}
+        Firefox is made to keep the power of the Web in the hands of users everywhere -
+        that includes you!
+      {% endtrans %}
+      </p>
+
+      <a href="">{{ _('Learn more about what makes us different') }}</a>
+    </div>
+
+    <div class="screenshot">
+      <img src="{{ media('img/firefox/firstrun/brand.png') }}">
+    </div>
+  </article>
+{% endif %}
+
+{% if version in '1245' %}
+  <article class="feature">
+    <div class="copy">
+      <header>
+        <h1>{{ _('Show off your style') }}</h1>
+      </header>
+
+      <p>
+      {% trans %}
+        Use Themes to personalize the look of your Firefox to match your mood, the
+        season or even just your favorite color.
+      {% endtrans %}
+      </p>
+
+      <a href="">{{ _('Find the one for you') }}</a>
+    </div>
+
+    <div class="screenshot">
+      {{ platform_img('img/firefox/firstrun/themes.png', alt=_('Themes')) }}
+    </div>
+  </article>
+{% endif %}
+
+{% if version in '1346' %}
+  <article class="feature img-right">
+    <div class="copy">
+      <header>
+        <h1>{{ _('Find what you need fast') }}</h1>
+      </header>
+
+      <p>
+      {% trans %}
+        Find your favorite sites quickly, even if you don't remember the URL. It's not
+        called the Awesome Bar for nothing.
+      {% endtrans %}
+      </p>
+
+      <a href="">{{ _('See what it can do') }}</a>
+    </div>
+
+    <div class="screenshot">
+      {{ platform_img('img/firefox/firstrun/awesomebar.png', alt=_('Awesome Bar')) }}
+    </div>
+  </article>
+{% endif %}
+
+{% if version in '25' %}
+  <article class="feature">
+    <div class="copy">
+      <header>
+        <h1>{{ _('Make a shortcut') }}</h1>
+      </header>
+
+      <p>
+      {% trans %}
+        Use Bookmarks to keep your favorite sites close and find them in a snap -
+        because you can't dog-ear the Internet. 
+      {% endtrans %}
+      </p>
+
+      <a href="">{{ _('Learn how to bookmark any page') }}</a>
+    </div>
+
+    <div class="screenshot">
+      {{ platform_img('img/firefox/firstrun/bookmarks.png', alt=_('Bookmarks')) }}
+    </div>
+  </article>
+{% endif %}
+
+  <div class="columns">
+    <aside class="column">
+      <header>
+        <h1>{{ _('Get Firefox updates') }}</h1>
+      </header>
+
+      <form>
+        <input type="email" placeholder="{{ _('YOUR EMAIL ADDRESS') }}" required class="required">
+
+        <button class="button" type="submit">
+          {{ _('Sign me up') }}
+          <img src="{{ media('img/firefox/firstrun/submit-arrow.png') }}">
+        </button>
+      </form>
+    </aside>
+
+    <aside class="column column-last">
+      <header>
+        <h1>{{ _("Let's be friends") }}</h1>
+      </header>
+
+      <ul>
+        <li>
+          <img src="{{ media('img/firefox/firstrun/facebook.png') }}">
+          <a href="">{{ _('Like us on Facebook') }}</a>
+        </li>
+        <li>
+          <img src="{{ media('img/firefox/firstrun/twitter.png') }}">
+          <a href="">{{ _('Follow us on Twitter') }}</a>
+        </li>
+      </ul>
+    </aside>
+  </div>
+</main>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_footer %}
+  {% include 'firefox/includes/simple_footer.html' %}
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_firstrun_new_a') }}
+{% endblock  %}

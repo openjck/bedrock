@@ -174,3 +174,17 @@ def firefox_partners(request):
     template_vars.update(csrf(request))
 
     return l10n_utils.render(request, 'firefox/partners/index.html', template_vars)
+
+
+def firstrun_new(request, view, version):
+    # b only has 1-2 version
+    if (view == 'b' and (version < 1 or version > 2)):
+        version = 1
+
+    template_vars = {
+        'version': version,
+    }
+
+    template = view + '.html'
+
+    return l10n_utils.render(request, 'firefox/firstrun/' + template, template_vars)
