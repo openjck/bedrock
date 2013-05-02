@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "firefox/base-resp.html" %}
+{% extends "firefox/base.html" %}
 
 {% block page_title %}{{ _('Welcome to Firefox') }}{% endblock %}
 {% block body_id %}firefox-firstrun{% endblock %}
@@ -24,13 +24,17 @@
 
   <nav class="sticky-nav" id="sticky-nav">
     <ul>
-      <li><a href="">{{ _('Smart features') }}</a></li>
-      <li><a href="">{{ _('Made for you') }}</a></li>
-      <li class="last"><a href="">{{ _('Fast &amp; easy') }}</a></li>
+      <li><a href="#pinnedtabs">{{ _('Smart features') }}</a></li>
+    {% if version in '36' %}
+      <li><a href="#brand">{{ _('Made for you') }}</a></li>
+    {% else %}
+      <li><a href="#themes">{{ _('Make it your own') }}</a></li>
+    {% endif %}
+      <li class="last"><a href="#fasteasy">{{ _('Fast &amp; easy') }}</a></li>
     </ul>
   </nav>
 
-  <article class="feature img-right">
+  <article class="feature img-right" id="pinnedtabs">
     <div class="copy">
       <header>
         <h1>{{ _('Save your faves') }}</h1>
@@ -43,7 +47,7 @@
       {% endtrans %}
       </p>
 
-      <a href="">{{ _('See how they work') }}</a>
+      <a href="#pinnedtabs-video">{{ _('See how they work') }}</a>
     </div>
 
     <div class="screenshot">
@@ -52,7 +56,7 @@
   </article>
 
 {% if version in '36' %}
-  <article class="feature">
+  <article class="feature" id="brand">
     <div class="copy">
       <header>
         <h1>{{ _('Discover our mission') }}</h1>
@@ -65,7 +69,7 @@
       {% endtrans %}
       </p>
 
-      <a href="">{{ _('Learn more about what makes us different') }}</a>
+      <a href="{{ url('mozorg.mission') }}">{{ _('Learn more about what makes us different') }}</a>
     </div>
 
     <div class="screenshot">
@@ -75,7 +79,7 @@
 {% endif %}
 
 {% if version in '1245' %}
-  <article class="feature">
+  <article class="feature" id="themes">
     <div class="copy">
       <header>
         <h1>{{ _('Show off your style') }}</h1>
@@ -88,7 +92,7 @@
       {% endtrans %}
       </p>
 
-      <a href="">{{ _('Find the one for you') }}</a>
+      <a href="https://addons.mozilla.org/en-us/firefox/themes/">{{ _('Find the one for you') }}</a>
     </div>
 
     <div class="screenshot">
@@ -98,7 +102,7 @@
 {% endif %}
 
 {% if version in '1346' %}
-  <article class="feature img-right">
+  <article class="feature img-right" id="fasteasy">
     <div class="copy">
       <header>
         <h1>{{ _('Find what you need fast') }}</h1>
@@ -111,7 +115,7 @@
       {% endtrans %}
       </p>
 
-      <a href="">{{ _('See what it can do') }}</a>
+      <a href="{{ url('firefox.features') }}#madeeasy">{{ _('See what it can do') }}</a>
     </div>
 
     <div class="screenshot">
@@ -121,7 +125,7 @@
 {% endif %}
 
 {% if version in '25' %}
-  <article class="feature">
+  <article class="feature" id="fasteasy">
     <div class="copy">
       <header>
         <h1>{{ _('Make a shortcut') }}</h1>
@@ -134,7 +138,7 @@
       {% endtrans %}
       </p>
 
-      <a href="">{{ _('Learn how to bookmark any page') }}</a>
+      <a href="https://support.mozilla.org/en-US/kb/use-bookmarks-to-save-and-organize-websites#w_how-do-i-create-a-bookmark">{{ _('Learn how to bookmark any page') }}</a>
     </div>
 
     <div class="screenshot">
@@ -145,33 +149,22 @@
 
   <div class="columns">
     <aside class="column">
-      <header>
-        <h1>{{ _('Get Firefox updates') }}</h1>
-      </header>
-
-      <form>
-        <input type="email" placeholder="{{ _('YOUR EMAIL ADDRESS') }}" required class="required">
-
-        <button class="button" type="submit">
-          {{ _('Sign me up') }}
-          <img src="{{ media('img/firefox/firstrun/submit-arrow.png') }}">
-        </button>
-      </form>
+      {{ email_newsletter_form(title='Get Firefox Updates') }}
     </aside>
 
     <aside class="column column-last">
       <header>
-        <h1>{{ _("Let's be friends") }}</h1>
+        <h3>{{ _("Let's be friends") }}</h3>
       </header>
 
-      <ul>
+      <ul class="social">
         <li>
           <img src="{{ media('img/firefox/firstrun/facebook.png') }}">
-          <a href="">{{ _('Like us on Facebook') }}</a>
+          <a href="https://www.facebook.com/Firefox">{{ _('Like us on Facebook') }}</a>
         </li>
         <li>
           <img src="{{ media('img/firefox/firstrun/twitter.png') }}">
-          <a href="">{{ _('Follow us on Twitter') }}</a>
+          <a href="https://twitter.com/firefox">{{ _('Follow us on Twitter') }}</a>
         </li>
       </ul>
     </aside>

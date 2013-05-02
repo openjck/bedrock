@@ -1,13 +1,8 @@
 @import "../../sandstone/lib.less";
+@import "common.less";
 
-.content-box {
-  @shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  .box-shadow(@shadow);
-  background: #fff;
-}
 
 #page-header {
-  text-align: center;
   h1 {
     font-size: 72px;
     margin: -20px 0 0 0;
@@ -23,6 +18,7 @@
 .sticky-nav {
   .content-box;
   margin-bottom: @baseLine;
+  .transition;
   ul {
     list-style-type: none;
     text-align: center;
@@ -32,6 +28,7 @@
     display: inline;
     padding: 4px 0;
     border-right: 1px dotted #d2d2d2;
+    margin-left: 0;
     &.last {
       border-right: none;
     }
@@ -47,31 +44,23 @@
   position: fixed;
   top: 0px;
   z-index: 10;
-  width: 1000px;
+  width: 980px;
 }
 
 .sticky-wrapper {
   .stuck {
-    @shadow: 0 3px 4px -1px rgba(0, 0, 0, 0.4);
+    @shadow: 0 3px 4px 0px rgba(0, 0, 0, 0.4);
     .box-shadow(@shadow);
   }
 }
 
 .feature {
-  position: relative;
-  overflow: hidden;
-  .content-box;
-  .clearfix;
-  margin-bottom: @baseLine;
-  font-weight: 100;
-
   h1 {
     font-size: 43px;
     color: #484848;
   }
 
   .copy {
-    float: right;
     width: 49%;
     .border-box;
     padding: (@baseLine * 2) (@baseLine * 1.5) (@baseLine * 2) @baseLine;
@@ -85,14 +74,7 @@
   }
 
   .screenshot {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
     width: 49%;
-  }
-
-  img {
-    display: block;
   }
 }
 
@@ -112,15 +94,11 @@
   }
 }
 
-.columns {
-  .clearfix;
-}
-
 .column {
   .content-box;
   float: left;
-  width: (490px - (@baseLine * 2));
-  height: (208px - (@baseLine * 2.5));
+  width: (480px - (@baseLine * 2));
+  min-height: (210px - (@baseLine * 2.5));
   padding: (@baseLine * 1.5) @baseLine @baseLine @baseLine;
   overflow: hidden;
   margin-right: 20px;
@@ -130,13 +108,30 @@
   }
 
   ul {
-    list-style-type: none;
-    li {
-      margin: @baseLine 0 0 0;
-      img {
-        vertical-align: middle;
-        margin-right: 12px;
-      }
+    margin-bottom: 0;
+  }
+
+  .billboard {
+    border-bottom: none;
+    width: auto;
+  }
+
+  #footer-email-form {
+    padding: 0;
+    h3 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      float: none;
+      width: auto;
+    }
+
+    .form-contents, .form-submit {
+      float: none;
+      margin-left: 0;
+    }
+
+    .button {
+      margin-top: @baseLine;
     }
   }
 }
@@ -145,107 +140,86 @@
   margin-right: 0;
 }
 
-.button {
-  display: block;
-  margin-top: 30px;
-  padding: 15px 50px;
-  font-size: 18px;
-  border-radius: 0.35em;
-  font-weight: 100;
-  min-width: 0;
-}
-
-.button img {
-  margin-left: 7px;
-  vertical-align: middle;
-}
-
-input[type="email"] {
-  padding: 9px 14px;
-  border-radius: 5px;
-  @shadow: inset 0 2px 3px rgba(12, 12, 12, 0.2);
-  .box-shadow(@shadow);
-  width: 250px;
-}
+// uncomment the below if we go back to the responsive template.
 
 /* Tablet layout: 760px */
-@media only screen and (max-width: @breakDesktop) and (min-width: @breakTablet) {
-  .stuck {
-    width: @breakTablet;
-  }
-
-  .column {
-    width: (370px - (@baseLine * 2));
-  }
-}
-
-/* Mobile landscape layout: 480px */
-@media only screen and (max-width: @breakTablet) {
-  #page-header {
-    h1 {
-      font-size: 52px;
-    }
-
-    h2 {
-      font-size: 30px;
-    }
-  }
-
-  .sticky-nav {
-    padding: (@baseLine/2) 0;
-    ul {
-      text-align: left;
-    }
-    li {
-      margin-left: 10px;
-      display: block;
-      border: none;
-      a {
-        line-height: 28px;
-      }
-    }
-  }
-
-  .stuck {
-    width: @breakMobileLandscape - (@baseLine * 2);
-  } 
-
-  .feature {
-    .copy {
-      float: none;
-      width: auto;
-    }
-
-    .screenshot {
-      position: relative;
-      width: auto;
-    }
-  }
-
-  .column {
-    float: none;
-    margin: 0 0 @baseLine 0;
-    width: (@breakMobileLandscape - (@baseLine * 4));
-  }
-}
-
-/* Mobile layout: 320px */
-@media only screen and (max-width: @breakMobileLandscape) {
-  #page-header {
-    h1 {
-      font-size: 38px;
-    }
-
-    h2 {
-      font-size: 24px;
-    }
-  }
-
-  .stuck {
-    width: @breakMobile;
-  }
-
-  .column {
-    width: (@breakMobile - (@baseLine * 2));
-  }
-}
+//@media only screen and (max-width: @breakDesktop) and (min-width: @breakTablet) {
+//  .stuck {
+//    width: @breakTablet;
+//  }
+//
+//  .column {
+//    width: (370px - (@baseLine * 2));
+//  }
+//}
+//
+///* Mobile landscape layout: 480px */
+//@media only screen and (max-width: @breakTablet) {
+//  #page-header {
+//    h1 {
+//      font-size: 52px;
+//    }
+//
+//    h2 {
+//      font-size: 30px;
+//    }
+//  }
+//
+//  .sticky-nav {
+//    padding: (@baseLine/2) 0;
+//    ul {
+//      text-align: left;
+//    }
+//    li {
+//      margin-left: 10px;
+//      display: block;
+//      border: none;
+//      a {
+//        line-height: 28px;
+//      }
+//    }
+//  }
+//
+//  .stuck {
+//    width: @breakMobileLandscape - (@baseLine * 2);
+//  } 
+//
+//  .feature {
+//    .copy {
+//      float: none;
+//      width: auto;
+//    }
+//
+//    .screenshot {
+//      position: relative;
+//      width: auto;
+//    }
+//  }
+//
+//  .column {
+//    float: none;
+//    margin: 0 0 @baseLine 0;
+//    width: (@breakMobileLandscape - (@baseLine * 4));
+//  }
+//}
+//
+///* Mobile layout: 320px */
+//@media only screen and (max-width: @breakMobileLandscape) {
+//  #page-header {
+//    h1 {
+//      font-size: 38px;
+//    }
+//
+//    h2 {
+//      font-size: 24px;
+//    }
+//  }
+//
+//  .stuck {
+//    width: @breakMobile;
+//  }
+//
+//  .column {
+//    width: (@breakMobile - (@baseLine * 2));
+//  }
+//}

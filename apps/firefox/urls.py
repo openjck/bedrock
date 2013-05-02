@@ -62,7 +62,7 @@ urlpatterns = patterns('',
         kwargs={'template_name': 'firefox/firstrun.html'}),
     url(whatsnew_re, views.latest_fx_redirect, name='firefox.whatsnew',
         kwargs={'template_name': 'firefox/whatsnew.html'}),
-    url('^firefox/welcome/(?P<view>[a|b])/(?P<version>[1-6])/$', views.firstrun_new, name='firefox.firstrun.new'),
+    url('^firefox/20.0/firstrun/(?P<view>[a|b])(?P<version>[1-6])/$', views.firstrun_new, name='firefox.firstrun.new'),
 
     url(r'^firefox/partners/$', views.firefox_partners,
         name='firefox.partners.index'),

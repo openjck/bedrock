@@ -176,11 +176,11 @@ MINIFY_BUNDLES = {
             'css/firefox/firstrun.less',
         ),
         'firefox_firstrun_new_a': (
-            'css/firefox/firstrun/common.less',
+            'css/sandstone/video.less',
             'css/firefox/firstrun/a.less',
         ),
         'firefox_firstrun_new_b': (
-            'css/firefox/firstrun/common.less',
+            'css/sandstone/video.less',
             'css/firefox/firstrun/b.less',
         ),
         'firefox_fx': (
@@ -391,7 +391,12 @@ MINIFY_BUNDLES = {
         'firefox_firstrun_new_a': (
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/firstrun/common.js',
             'js/firefox/firstrun/a.js',
+        ),
+        'firefox_firstrun_new_b': (
+            'js/firefox/firstrun/common.js',
+            'js/firefox/firstrun/b.js',
         ),
         'firefox_fx': (
             'js/mozilla-pager.js',
