@@ -388,6 +388,9 @@ MINIFY_BUNDLES = {
             'js/mozilla-video-tools.js',
             'js/firefox/features.js',
         ),
+        'firefox_firstrun': (
+            'js/firefox/firstrun/firstrun.js',
+        ),
         'firefox_firstrun_new_a': (
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',

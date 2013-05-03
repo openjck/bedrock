@@ -8,6 +8,7 @@ Mozilla.Modal = (function(w, $) {
 
   var _open = false;
   var _modal = null;
+  var _close_callback = null;
 
   var _init = function() {
     var $d = $(w.document);
@@ -31,7 +32,7 @@ Mozilla.Modal = (function(w, $) {
     });
   };
 
-  var _create_modal = function(origin, content, callback) {
+  var _create_modal = function(origin, content, create_callback, close_callback) {
     // Clear existing modal, if necessary,
     $('#modal').remove();
     $('.modalOrigin').removeClass('modalOrigin');
@@ -63,13 +64,18 @@ Mozilla.Modal = (function(w, $) {
 
     _open = true;
 
+    // store (optional) close callback
+    if (typeof(close_callback) === 'function') {
+      _close_callback = close_callback;
+    }
+
     // execute (optional) callback
-    if (typeof(callback) === 'function') {
-      callback();
+    if (typeof(create_callback) === 'function') {
+      create_callback();
     }
   };
 
-  var _close_modal = function(callback) {
+  var _close_modal = function() {
     $('#modal').fadeOut('fast', function() {
       $(this).remove();
     });
@@ -83,8 +89,9 @@ Mozilla.Modal = (function(w, $) {
     _modal = null;
 
     // execute (optional) callback
-    if (typeof(callback) === 'function') {
-      callback();
+    if (_close_callback && typeof(_close_callback) === 'function') {
+      _close_callback();
+      _close_callback = null;
     }
   };
 
@@ -92,11 +99,11 @@ Mozilla.Modal = (function(w, $) {
     init: function() {
       _init();
     },
-    create_modal: function(origin, content, callback) {
-      _create_modal(origin, content, callback);
+    create_modal: function(origin, content, create_callback, close_callback) {
+      _create_modal(origin, content, create_callback, close_callback);
     },
-    close_modal: function(callback) {
-      _close_modal(callback);
+    close_modal: function() {
+      _close_modal();
     }
   };
 })(window, window.jQuery);

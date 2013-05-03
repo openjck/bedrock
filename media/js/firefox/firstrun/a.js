@@ -15,5 +15,8 @@
     }, 700, function() {
       $(elem).attr('tabindex','100').focus().removeAttr('tabindex');
     });
+
+    // GA tracking
+    window.gaq_track('first run interaction', 'click', $(this).attr('href'));
   });
 })(window.jQuery);

@@ -10,6 +10,10 @@
 {% block site_header_nav %}{% endblock %}
 {% block site_header_logo %}{% endblock %}
 
+{% block extrahead %}
+ {# GA experiment code here #}
+{% endblock %}
+
 {% block site_css %}
   {{ css('firefox_firstrun_new_a') }}
 {% endblock %}
@@ -148,7 +152,7 @@
     {% endif %}
       </p>
 
-      <a href="{{ url('mozorg.mission') }}">
+      <a class="featurelink" href="{{ url('mozorg.mission') }}">
       {% if copy == 'a' %}
         {{ _('Learn more about what makes us different') }}
       {% else %}
@@ -189,7 +193,7 @@
     {% endif %}
       </p>
 
-      <a href="https://addons.mozilla.org/en-us/firefox/themes/">
+      <a class="featurelink" href="https://addons.mozilla.org/en-us/firefox/themes/">
       {% if copy == 'a' %}
         {{ _('Find the one for you') }}
       {% else %}
@@ -231,7 +235,7 @@
     {% endif %}
       </p>
 
-      <a href="{{ url('firefox.features') }}#madeeasy">
+      <a class="featurelink" href="{{ url('firefox.features') }}#madeeasy">
       {% if copy == 'a' %}
         {{ _('See what it can do') }}
       {% else %}
@@ -273,7 +277,7 @@
     {% endif %}
       </p>
 
-      <a href="https://support.mozilla.org/en-US/kb/use-bookmarks-to-save-and-organize-websites#w_how-do-i-create-a-bookmark">
+      <a class="featurelink" href="https://support.mozilla.org/en-US/kb/use-bookmarks-to-save-and-organize-websites#w_how-do-i-create-a-bookmark">
       {% if copy == 'a' %}
         {{ _('Learn how to bookmark any page') }}
       {% else %}
@@ -301,16 +305,18 @@
       <ul class="social">
         <li>
           <img src="{{ media('img/firefox/firstrun/facebook.png') }}">
-          <a href="https://www.facebook.com/Firefox">{{ _('Like us on Facebook') }}</a>
+          <a class="facebook" href="https://www.facebook.com/Firefox">{{ _('Like us on Facebook') }}</a>
         </li>
         <li>
           <img src="{{ media('img/firefox/firstrun/twitter.png') }}">
-          <a href="https://twitter.com/firefox">{{ _('Follow us on Twitter') }}</a>
+          <a class="twitter" href="https://twitter.com/firefox">{{ _('Follow us on Twitter') }}</a>
         </li>
       </ul>
     </aside>
   </div>
 </main>
+
+{% include 'firefox/firstrun/_video.html' %}
 
 {% endblock %}
 
