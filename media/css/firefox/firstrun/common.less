@@ -98,3 +98,57 @@ input[type="email"] {
   .box-shadow(@shadow);
   width: 250px;
 }
+
+#pinnedtabs-video {
+  display: block;
+  position: absolute;
+  border: 7px solid #fff;
+  @shadow: 0 4px 10px rgba(5, 6, 6, 0.75);
+  width: 415px;
+  height: 232px;
+  .box-shadow(@shadow);
+}
+
+// extract to modal.less?
+body.noscroll {
+  overflow: hidden;
+}
+
+#modal {
+  background: #444;
+  background: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  height: 101%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999999;
+  overflow: auto;
+  display: none;
+}
+
+#modal .inner {
+  margin: 40px auto;
+  padding: 0 20px;
+  color: #f3f3f3;
+}
+
+#modal .close {
+  position: fixed;
+  z-index: 99;
+}
+// end generic modal
+
+#modal .close {
+  background: url(/media/img/firefox/firstrun/close.png) center center no-repeat;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  border: 0;
+  cursor: pointer;
+  .close-text {
+    visibility: hidden;
+  }
+}

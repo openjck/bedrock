@@ -1,50 +1,36 @@
-;(function(w, $) {
+;(function($) {
   'use strict';
 
-  // Create a full-page overlay and append the content
-  function createModal(origin, content) {
-      // Clear existing modal, if necessary,
-      $('#modal').remove();
-      $('.modalOrigin').removeClass('modalOrigin');
+  var position_video = function() {
+    var pos = $('#pinnedtabs-screenshot').offset();
+    var scroll_top = $(window).scrollTop();
 
-      // Create new modal
-      var html = (
-          '<div id="modal">' +
-          '  <div class="inner">' +
-          '    <button type="button" class="close">' +
-          '      ' + trans('close') +
-          '    </button>' +
-          '  </div>' +
-          '</div>'
-      );
+    var top = pos.top - scroll_top;
+    var left = pos.left;
+    var $video = $('#pinnedtabs-video');
 
-      // Add it to the page.
-      $('body').addClass("noscroll").append(html);
-      $("#modal .inner").append(content);
+    $video.css({
+      'top': top,
+      'left': left
+    });
 
-      $('#modal #overlay').fadeIn('fast');
+    $('#modal-close').css({
+      'top': (top - 16),
+      'left': (left + $video.width() - 4)
+    });
+  };
 
-      $(origin).addClass('modalOrigin');
-  }
+  $('a[href="#pinnedtabs-video"]').on('click', function(e) {
+    e.preventDefault();
 
-  function closeModal() {
-      $('#modal').fadeOut('fast', function() {
-          $overlay.hide();
-          var content = $overlay.detach();
-          $('#overlay-container').append(content);
-          $(this).remove();
-      });
-      $('body').removeClass('noscroll');
-      $('.modalOrigin').focus().remove('modalOrigin');
-  }
+    var video = '';
 
-  // Close modal on clicking close button or background.
-  $(w.document).on('click', '#modal .close', closeModal);
+    var content =
+      '<video id="pinnedtabs-video" poster="/media/img/firefox/firstrun/pinnedtabs-poster.jpg" controls>'+
+      ' <source src="'+video+'.mp4" type="video/mp4">'+
+      ' <source src="'+video+'.webm" type="video/webm">'+
+      '</video>';
 
-  // Close on escape
-  $(w.document).on('keyup', function(e) {
-      if (e.keyCode === 27) { // esc
-          closeModal();
-      }
+    Mozilla.Modal.create_modal(this, content, position_video);
   });
-})(window, window.jQuery);
+})(window.jQuery);

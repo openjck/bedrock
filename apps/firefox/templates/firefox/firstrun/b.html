@@ -10,6 +10,11 @@
 {% block site_header_nav %}{% endblock %}
 {% block site_header_logo %}{% endblock %}
 
+{% block string_data %}
+  {# L10n: This is the label for a button that closes a modal dialog #}
+  data-close="{{ _('Close') }}"
+{% endblock %}
+
 {% block site_css %}
   {{ css('firefox_firstrun_new_b') }}
 {% endblock %}
@@ -25,17 +30,36 @@
     <div class="copy">
       <header>
         {# L10n: Line break is for presentation only. Position as needed. #}
-        <h1>{{ _('Doing good is <br>part of our code') }}</h1>
+        <h1>
+        {% if copy == 'a' %}
+          {{ _('Doing good is <br>part of our code') }}
+        {% else %}
+          {{ _('Discover what makes it different.') }}
+        {% endif %}
+        </h1>
       </header>
 
       <p>
+    {% if copy == 'a' %}
       {% trans %}
         Firefox is made with a mission to keep the power of the Web in the hands
         of users everywhere - that includes you!
       {% endtrans %}
+    {% else %}
+      {% trans %}
+        Our mission is to promote openness, innovation and opportunity by keeping
+        the power of the Web in people's hands.
+      {% endtrans %}
+    {% endif %}
       </p>
 
-      <a href="{{ url('mozorg.mission') }}">{{ _('Learn more about what makes us different') }}</a>
+      <a href="{{ url('mozorg.mission') }}">
+      {% if copy == 'a' %}
+        {{ _('Learn more about what makes us different') }}
+      {% else %}
+        {{ _('See what that means for you') }}
+      {% endif %}
+      </a>
 
       <ul class="social">
         <li>
@@ -55,18 +79,34 @@
   </article>
 
   <div class="columns">
-    <aside class="column pinnedtabs">
+    <aside class="column pinnedtabs" id="pinnedtabs-screenshot">
       <div class="copy">
         <header>
-          <h1>{{ _('Save your faves') }}</h1>
+          <h1>
+          {% if copy == 'a' %}
+            {{ _('Save your faves') }}
+          {% else %}
+            {{ _('Innovative features') }}
+          {% endif %}
+          </h1>
         </header>
 
+      {% if copy == 'a' %}
         <p>
         {% trans url1='#pinnedtabs-video' %}
           Keep your favorite sites a click away with Pinned Tabs.
           <a href="{{ url1 }}">See how they work</a>
         {% endtrans %}
         </p>
+      {% else %}
+        <p>
+        {% trans %}
+          Right-click on any tab and select "Pin Tab" to keep it open.
+        {% endtrans %}
+        </p>
+
+        <p>{{ _('Try it for yourself') }}</p>
+      {% endif %}
       </div>
 
       <div class="screenshot">
@@ -76,14 +116,27 @@
     <aside class="column themes">
       <div class="copy">
         <header>
-          <h1>{{ _('Make it your own') }}</h1>
+          <h1>
+          {% if copy == 'a' %}
+            {{ _('Make it your own') }}
+          {% else %}
+            {{ _('Customization') }}
+          {% endif %}
+          </h1>
         </header>
 
         <p>
+      {% if copy == 'a' %}
         {% trans url1='https://addons.mozilla.org/en-us/firefox/themes/' %}
           Use Themes to personalize the look of your Firefox.
           <a href="{{ url1 }}">Find your theme</a>
         {% endtrans %}
+      {% else %}
+        {% trans url1='https://addons.mozilla.org/en-us/firefox/themes/' %}
+          Use Themes to change the look of your Firefox.
+          <a href="{{ url1 }}">Explore Themes</a>
+        {% endtrans %}
+      {% endif %}
         </p>
       </div>
 
@@ -146,5 +199,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_firstrun_new_a') }}
+  {{ js('firefox_firstrun_new_b') }}
 {% endblock  %}

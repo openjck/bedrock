@@ -178,17 +178,23 @@ def firefox_partners(request):
 
 def firstrun_new(request, view, version):
     # only Firefox users should see the firstrun pages
-    #user_agent = request.META.get('HTTP_USER_AGENT', '')
-    #if not 'Firefox' in user_agent:
-    #    url = reverse('firefox.new')
-    #    return HttpResponsePermanentRedirect(url)
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if not 'Firefox' in user_agent:
+        url = reverse('firefox.new')
+        return HttpResponsePermanentRedirect(url)
 
     # b only has 1-4 version
     if (view == 'b' and (int(version) < 1 or int(version) > 4)):
         version = '1'
 
+    if (view == 'a'):
+        copy = 'a' if (version in '123') else 'b'
+    else:
+        copy = 'a' if (version in '12') else 'b'
+
     template_vars = {
         'version': version,
+        'copy': copy,
     }
 
     template = view + '.html'

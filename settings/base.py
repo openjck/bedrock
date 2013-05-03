@@ -391,12 +391,13 @@ MINIFY_BUNDLES = {
         'firefox_firstrun_new_a': (
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
+            'js/mozilla-modal.js',
             'js/firefox/firstrun/common.js',
             'js/firefox/firstrun/a.js',
         ),
         'firefox_firstrun_new_b': (
+            'js/mozilla-modal.js',
             'js/firefox/firstrun/common.js',
-            'js/firefox/firstrun/b.js',
         ),
         'firefox_fx': (
             'js/mozilla-pager.js',
