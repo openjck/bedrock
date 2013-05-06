@@ -14,7 +14,7 @@ Installation
 It's a simple `Playdoh
 <http://playdoh.readthedocs.org/en/latest/index.html>`_ instance, which is a Django project.
 
-These instructions assume you have `git` and `pip` installed. If you don't have `pip` install, you can install it with `easy_install pip`.
+These instructions assume you have `git` and `pip` installed. If you don't have `pip` installed, you can install it with `easy_install pip`.
 
 Start by getting the source::
 
@@ -119,7 +119,6 @@ Apache config - create file ``/etc/apache2/sites-available/mozilla.com``::
     <VirtualHost *:80 :81>
         ServerName mozilla.local
         ServerAdmin user@example.com
-        VirtualDocumentRoot "/path/to/mozilla/mozilla.com"
         DocumentRoot "/path/to/mozilla/mozilla.com"
         AddType application/x-httpd-php .php .html
         DirectoryIndex index.php index.html
@@ -133,7 +132,7 @@ Apache config - create file ``/etc/apache2/sites-available/mozilla.com``::
         RewriteMap org-urls-410 txt:/path/to/mozilla.com/org-urls-410.txt
         RewriteMap org-urls-301 txt:/path/to/mozilla.com/org-urls-301.txt
 
-        WSGIDaemonProcess bedrock_stage processes=8 threads=1 display-name=bedrock_stage
+        WSGIDaemonProcess bedrock_stage python-path=/path/to/bedrock:/path/to/venv-for-bedrock/lib/python2.6/site-packages
         WSGIProcessGroup bedrock_stage
         WSGIScriptAlias /b /path/to/bedrock/wsgi/playdoh.wsgi process-group=bedrock_stage application-group=bedrock_stage
 
@@ -142,20 +141,9 @@ Apache config - create file ``/etc/apache2/sites-available/mozilla.com``::
             AllowOverride FileInfo Indexes
         </Directory>
 
-        # DO NOT PUT REWRITES HERE!
-        # they are developer-managed, in the upstream app repo, and included here:
-        # env-specific file first, because these rewrites generally use [L], so
-        # this makes them override-able
-
         Include /path/to/bedrock/etc/httpd/stage.conf
         Include /path/to/bedrock/etc/httpd/global.conf
     </VirtualHost>
-
-In ``/etc/apache2/envvars``, add the Python path::
-
-    export PYTHONPATH=/path/to/bedrock:/path/to/venv-for-bedrock/lib/python2.7/site-packages
-
-(If you prefer, you can set the Python path on the WSGIDaemonProcess directive instead.)
 
 Then enable the new site, build the css and js files, and finally
 restart apache:
@@ -180,7 +168,7 @@ that the WSGI processes will be restarted and start running the new code.
 
 If you're working on the rewrite rules in ``bedrock/etc/httpd/*.conf``, be
 sure to restart Apache after any change. Apache doesn't re-read those files
-after starting.
+after it has started.
 
 Localization
 ------------
