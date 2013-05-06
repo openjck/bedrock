@@ -5,10 +5,14 @@
   var $video = $('#pinnedtabs-video');
   var $video_content;
 
+  if ($('html').hasClass('osx')) {
+    $video.attr('src', 'https://videos-cdn.mozilla.net/serv/drafts/pinnedtabs-mac.webm');
+  } else {
+    $video.attr('src', 'https://videos-cdn.mozilla.net/serv/drafts/pinnedtabs-win.webm');
+  }
+
   window.gaq_track = function(category, action, label) {
     if (window._gaq) {
-      console.log('tracking');
-      console.log(arguments);
       _gaq.push(['_trackEvent', category, action, label]);
     }
   };
