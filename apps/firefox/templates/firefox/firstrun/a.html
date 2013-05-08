@@ -113,14 +113,15 @@
       </p>
 
       <p>
-      {% trans %}
-        Try it for yourself: Right-click on any tab and click "Pin Tab"
+      {% trans url1='#pinnedtabs-video', id1='pinnedtabs-video-link' %}
+        Try it for yourself: Right-click on any tab and click "Pin Tab".
+        <a id="{{ id1 }}" href="{{ url1 }}">See how they work</a>
       {% endtrans %}
       </p>
     {% endif %}
     </div>
 
-    <div class="screenshot" id="pinnedtabs-screenshot">
+    <div class="screenshot{% if copy == 'a' %} screenshot-offset{% endif %}" id="pinnedtabs-screenshot">
       {{ platform_img('img/firefox/firstrun/pinnedtabs.png', alt=_('Pinned tabs')) }}
     </div>
   </article>

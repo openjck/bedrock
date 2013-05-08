@@ -4,6 +4,7 @@
   var $video_container = $('#video-container');
   var $video = $('#pinnedtabs-video');
   var $video_content;
+  var video_closing = false;
 
   if ($('html').hasClass('osx')) {
     $video.attr('src', 'https://videos-cdn.mozilla.net/serv/drafts/pinnedtabs-mac.webm');
@@ -46,6 +47,10 @@
   };
 
   var reattach_video = function() {
+    // to avoid tracking video pause event fired when modal closes
+    if (!$video[0].paused) {
+      video_closing = true;
+    }
     $video_container.append($video_content);
   };
 
@@ -73,12 +78,26 @@
   $video.on('play', function() {
     gaq_track("first run interaction", "play", "Pinned Tabs Video");
   }).on('pause', function() {
-    gaq_track("first run interaction", "pause", "Pinned Tabs Video");
+    // video pause event is fired when modal closes
+    // do not track this particular pause event
+    if (!video_closing) {
+      gaq_track("first run interaction", "pause", "Pinned Tabs Video");
+      video_closing = false;
+    }
   }).on('ended', function() {
     gaq_track("first run interaction", "finish", "Pinned Tabs Video");
   });
 
-  $('#footer-email-form').on('submit', function() {
-    gaq_track("Newsletter Registration", "submit", "Registered for Firefox Updates");
+  $('#footer_email_submit').on('click', function(e) {
+    // if form is valid, delay submission to wait for GA tracking
+    if ($('#footer-email-form')[0].checkValidity()) {
+      e.preventDefault();
+
+      gaq_track("Newsletter Registration", "submit", "Registered for Firefox Updates");
+
+      setTimeout(function() {
+        $('#footer-email-form').submit();
+      }, 500);
+    }
   });
 })(window.jQuery);

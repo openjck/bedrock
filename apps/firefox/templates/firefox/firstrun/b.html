@@ -96,17 +96,12 @@
         </header>
 
         <p>
-      {% if copy == 'a' %}
-        {% trans url1='#pinnedtabs-video' %}
-          Keep your favorite sites a click away with Pinned Tabs.
-          <a id="pinnedtabs-video-link" href="{{ url1 }}">See how they work</a>
-        {% endtrans %}
-      {% else %}
-        {% trans %}
-          Right-click on any tab and select "Pin Tab" to keep it open. Try it for
-          yourself.
-        {% endtrans %}
-      {% endif %}
+        {% if copy == 'a' %}
+          {{ _('Keep your favorite sites a click away with Pinned Tabs.') }}
+        {% else %}
+          {{ _('Right-click on any tab and select "Pin Tab" to keep it open.') }}
+        {% endif %}
+          <a id="pinnedtabs-video-link" href="#pinnedtabs-video">{{ _('See how they work') }}</a>
         </p>
       </div>
 
@@ -128,14 +123,14 @@
 
         <p>
       {% if copy == 'a' %}
-        {% trans url1='https://addons.mozilla.org/en-us/firefox/themes/' %}
+        {% trans url1='https://addons.mozilla.org/en-us/firefox/themes/', class1='featurelink' %}
           Use Themes to personalize the look of your Firefox.
-          <a class="featurelink" href="{{ url1 }}">Find your theme</a>
+          <a class="{{ class1 }}" href="{{ url1 }}">Find your theme</a>
         {% endtrans %}
       {% else %}
-        {% trans url1='https://addons.mozilla.org/en-us/firefox/themes/' %}
+        {% trans url1='https://addons.mozilla.org/en-us/firefox/themes/', class1='featurelink' %}
           Use Themes to change the look of your Firefox.
-          <a class="featurelink" href="{{ url1 }}">Explore Themes</a>
+          <a class="{{ class1 }}" href="{{ url1 }}">Explore Themes</a>
         {% endtrans %}
       {% endif %}
         </p>
@@ -153,9 +148,9 @@
         </header>
 
         <p>
-        {% trans url1=url('firefox.features') + '#madeeasy' %}
+        {% trans url1=url('firefox.features') + '#madeeasy', class1='featurelink' %}
           The Awesome Bar helps you find sites quickly - because it's awesome.
-          <a class="featurelink" href="{{ url1 }}">See what it can do</a>
+          <a class="{{ class1 }}" href="{{ url1 }}">See what it can do</a>
         {% endtrans %}
         </p>
       </div>
@@ -172,9 +167,9 @@
         </header>
 
         <p>
-        {% trans url1='https://support.mozilla.org/en-US/kb/use-bookmarks-to-save-and-organize-websites#w_how-do-i-create-a-bookmark' %}
+        {% trans url1='https://support.mozilla.org/en-US/kb/use-bookmarks-to-save-and-organize-websites#w_how-do-i-create-a-bookmark', class1='featurelink' %}
           One click is all you need to save pages.
-          <a class="featurelink" href="{{ url1 }}">Learn how to bookmark</a>
+          <a class="{{ class1 }}" href="{{ url1 }}">Learn how to bookmark</a>
         {% endtrans %}
         </p>
       </div>

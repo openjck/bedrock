@@ -17,6 +17,6 @@
     });
 
     // GA tracking
-    window.gaq_track('first run interaction', 'click', $(this).attr('href'));
+    window.gaq_track('navigation interaction', 'click', $(this).attr('href'));
   });
 })(window.jQuery);
