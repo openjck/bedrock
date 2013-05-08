@@ -39,7 +39,7 @@ Now configure the application to run locally by creating your local settings fil
 
     $ cp settings/local.py-dist settings/local.py
 
-You shouldn't need customize anything in there yet.
+You shouldn't need to customize anything in there yet.
 
 Check out the latest product-details::
 
@@ -80,7 +80,7 @@ server at ``/b/``.  That's because the rewrite rules in the
 PHP and Apache config assume they can serve requests from Bedrock by
 rewriting them internally to have a ``/b/`` on the front of their URLs.
 
-One way to do that is use runserver to serve Bedrock at port 8000 as
+One way to do that is to use runserver to serve Bedrock at port 8000 as
 above, then proxy to it from Apache. The whole virtual server config
 might end up looking like this::
 
