@@ -183,6 +183,18 @@ def firstrun_new(request, view, version):
         url = reverse('firefox.new')
         return HttpResponsePermanentRedirect(url)
 
+    # only users on the latest version should see the
+    # new pages (for GA experiment data purity)
+    user_version = "0"
+    ua_regexp = r"Firefox/(%s)" % version_re
+    match = re.search(ua_regexp, user_agent)
+    if match:
+        user_version = match.group(1)
+
+    if not is_current_or_newer(user_version):
+        url = reverse('firefox.update')
+        return HttpResponsePermanentRedirect(url)
+
     # b only has 1-4 version
     if (view == 'b' and (int(version) < 1 or int(version) > 4)):
         version = '1'
