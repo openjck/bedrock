@@ -51,9 +51,9 @@ Lastly, you need to install `node` and the `less` package. Soon you won't need t
 
 You don't have to use npm to install less; feel free to install it however you want.
 
-Add the path to the LESS compiler in you `local.py` config file in the `settings` folder. It is most likely `/usr/local/bin/lessc`, so add the following line::
+Add the path to the LESS compiler (found by using `which lessc`) to `bedrock/settings/local.py` with the following line::
 
-    LESS_BIN = '/usr/local/bin/lessc'
+    LESS_BIN = '/path/to/lessc'
 
 Make it run
 -----------
@@ -105,9 +105,15 @@ Assumptions:
 * A Red Hat or Debian-based Linux distribution. (Other distributions might not
   have Apache HTTP Server installed and configured the same way.)
 * Apache HTTP Server with php and mod_wsgi
-* Subversion mozilla.com checkout at /path/to/mozilla/mozilla.com
-* Subversion mozilla.org checkout at /path/to/mozilla/mozilla.com/org
-* Bedrock checkout at /path/to/mozilla/bedrock
+* Subversion mozilla.com checkout at `/path/to/mozilla/mozilla.com`
+* Subversion mozilla.org checkout at `/path/to/mozilla/mozilla.com/org` (ideally
+  as an SVN external)
+* Bedrock checkout at `/path/to/mozilla/bedrock`
+
+Create a local config files for mozilla.com and mozilla.org::
+
+    $ cp /path/to/mozilla.com/includes/config.inc.php-dist /path/to/mozilla.com/includes/config.inc.php
+    $ cp /path/to/mozilla.com/org/includes/config.inc.php-dist /path/to/mozilla.com/org/includes/config.inc.php`
 
 Edit ``/etc/hosts`` and add::
 
@@ -116,7 +122,7 @@ Edit ``/etc/hosts`` and add::
 Apache config - create file ``/etc/apache2/sites-available/mozilla.com``::
 
     # Main site at /, django-bedrock at /b
-    <VirtualHost *:80 :81>
+    <VirtualHost *:80 *:81>
         ServerName mozilla.local
         ServerAdmin user@example.com
         DocumentRoot "/path/to/mozilla/mozilla.com"
@@ -132,6 +138,7 @@ Apache config - create file ``/etc/apache2/sites-available/mozilla.com``::
         RewriteMap org-urls-410 txt:/path/to/mozilla.com/org-urls-410.txt
         RewriteMap org-urls-301 txt:/path/to/mozilla.com/org-urls-301.txt
 
+        # In the path below, update "python2.6" to whatever version of python2 is provided.
         WSGIDaemonProcess bedrock_stage python-path=/path/to/bedrock:/path/to/venv-for-bedrock/lib/python2.6/site-packages
         WSGIProcessGroup bedrock_stage
         WSGIScriptAlias /b /path/to/bedrock/wsgi/playdoh.wsgi process-group=bedrock_stage application-group=bedrock_stage
@@ -151,6 +158,7 @@ restart apache:
 .. code-block:: bash
 
     sudo a2ensite mozilla.com
+    sudo a2enmod expires headers actions
     python manage.py compress_assets
     sudo service apache2 restart
 
