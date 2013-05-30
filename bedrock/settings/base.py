@@ -622,6 +622,7 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.mozorg' % PROJECT_MODULE,
     '%s.persona' % PROJECT_MODULE,
     '%s.privacy' % PROJECT_MODULE,
+    '%s.projects' % PROJECT_MODULE,
     '%s.redirects' % PROJECT_MODULE,
     '%s.research' % PROJECT_MODULE,
     '%s.styleguide' % PROJECT_MODULE,
